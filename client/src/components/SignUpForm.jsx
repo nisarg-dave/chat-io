@@ -12,7 +12,6 @@ function SignUpForm() {
   const handleSubmit = () => {
     username.current = username.current.value;
     password.current = password.current.value;
-    console.log(username, password);
     sessionStorage.setItem('auth', {
       username: username.current,
       password: password.current,
