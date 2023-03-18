@@ -1,17 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useContext } from 'react';
 import FormField from './FormField';
 import { Box, Button, Heading } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../pages/Pages';
 
 function SignUpForm() {
   const navigate = useNavigate();
 
-  const username = useRef('');
-  const password = useRef('');
+  const { username, password } = useContext(AuthContext);
 
   const handleSubmit = () => {
     username.current = username.current.value;
     password.current = password.current.value;
+    console.log(username, password);
     sessionStorage.setItem('auth', {
       username: username.current,
       password: password.current,
