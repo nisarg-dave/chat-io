@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Input } from '@chakra-ui/react';
 
-function FormField({ placeholder, innerRef, type }) {
-  return <Input placeholder={placeholder} mb={5} type={type} ref={innerRef} />;
-}
+const FormField = forwardRef(function FormField({ placeholder, type }, ref) {
+  return <Input placeholder={placeholder} mb={5} type={type} ref={ref} />;
+});
 
 export default FormField;
