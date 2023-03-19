@@ -1,6 +1,8 @@
-import { Box, Button, Container, Textarea } from '@chakra-ui/react';
+import { Button, Container } from '@chakra-ui/react';
 import React from 'react';
+import MessagesContainer from '../components/MessagesContainer';
 import Navbar from '../components/Navbar';
+import TextBox from '../components/TextBox';
 import Default from '../layouts/Default';
 
 function ChatPage() {
@@ -9,12 +11,8 @@ function ChatPage() {
       <Navbar />
       <Default>
         <Container as="section" maxWidth="4xl">
-          <Box borderRadius="lg" border="1px" h="550" marginBottom={5}></Box>
-          <Textarea
-            resize="horizontal"
-            placeholder="Type your message here"
-            marginBottom={2}
-          />
+          <MessagesContainer />
+          <TextBox />
           <Button bg="#EF7C8E" color="white">
             Send
           </Button>
