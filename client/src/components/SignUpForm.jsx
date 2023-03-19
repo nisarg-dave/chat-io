@@ -14,7 +14,6 @@ function SignUpForm() {
     password.current = password.current.value;
     sessionStorage.setItem('auth', {
       username: username.current,
-      password: password.current,
     });
     navigate(0);
   };
