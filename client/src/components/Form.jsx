@@ -36,7 +36,7 @@ function Form({ buttonText }) {
         {buttonText}
       </Button>
       {isAuthenticated ? null : (
-        <Text textAlign="center" mt="2" color="white">
+        <Text textAlign="center" mt="2">
           <Link fontSize="sm" href="/signup">
             Not registered yet? Sign Up now.
           </Link>
