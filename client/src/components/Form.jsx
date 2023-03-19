@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import FormField from './FormField';
-import { Box, Button, Heading } from '@chakra-ui/react';
+import { Box, Button, Heading, Link, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../pages/Pages';
 
-function SignUpForm() {
+function Form({ buttonText }) {
   const navigate = useNavigate();
 
-  const { username, password } = useContext(AuthContext);
+  const { username, password, isAuthenticated } = useContext(AuthContext);
 
   const handleSubmit = () => {
     username.current = username.current.value;
@@ -15,21 +15,35 @@ function SignUpForm() {
     sessionStorage.setItem('auth', {
       username: username.current,
     });
-    navigate(0);
+    navigate('/chat');
   };
   return (
-    <Box p={4} maxW="sm" borderRadius="lg" border="1px" padding={8}>
+    <Box
+      p={4}
+      maxW="sm"
+      borderRadius="lg"
+      border="1px"
+      padding={8}
+      bg="#B6E2D3"
+    >
       <Heading as="h1" size="2xl" mb={2} textAlign="center">
         Chat IO
       </Heading>
       {/* <FormField placeholder="Email" /> */}
       <FormField placeholder="Username" type="text" ref={username} />
       <FormField placeholder="Password" type="password" ref={password} />
-      <Button colorScheme="blue" w="100%" onClick={handleSubmit}>
-        Sign Up
+      <Button bg="#EF7C8E" w="100%" onClick={handleSubmit} color="white">
+        {buttonText}
       </Button>
+      {isAuthenticated ? null : (
+        <Text textAlign="center" mt="2" color="white">
+          <Link fontSize="sm" href="/signup">
+            Not registered yet? Sign Up now.
+          </Link>
+        </Text>
+      )}
     </Box>
   );
 }
 
-export default SignUpForm;
+export default Form;

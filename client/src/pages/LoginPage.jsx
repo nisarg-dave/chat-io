@@ -2,12 +2,12 @@ import React from 'react';
 import Form from '../components/Form';
 import Default from '../layouts/Default';
 
-function SignUpPage() {
+function LoginPage() {
   return (
     <Default>
-      <Form buttonText="Sign Up" />
+      <Form buttonText="Log In" />;
     </Default>
   );
 }
 
-export default SignUpPage;
+export default LoginPage;
