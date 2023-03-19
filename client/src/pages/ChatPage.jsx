@@ -6,6 +6,9 @@ import TextBox from '../components/TextBox';
 import Default from '../layouts/Default';
 
 function ChatPage() {
+  const handleSend = () => {
+    console.log('Sent');
+  };
   return (
     <>
       <Navbar />
@@ -13,7 +16,7 @@ function ChatPage() {
         <Container as="section" maxWidth="4xl">
           <MessagesContainer />
           <TextBox />
-          <Button bg="#EF7C8E" color="white">
+          <Button bg="#EF7C8E" color="white" onClick={handleSend}>
             Send
           </Button>
         </Container>
