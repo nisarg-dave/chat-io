@@ -3,13 +3,14 @@ import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../pages/Pages';
 import { useNavigate } from 'react-router-dom';
+import pb from '../lib/pocketbase';
 
 function Navbar() {
   const { username } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    sessionStorage.removeItem('auth');
+    pb.authStore.clear();
     navigate('/');
   };
   return (

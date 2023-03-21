@@ -3,6 +3,7 @@ import SignUpPage from './SignUpPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
+import pb from '../lib/pocketbase';
 
 export const AuthContext = createContext();
 
@@ -10,16 +11,19 @@ function Pages() {
   const username = useRef('');
   const password = useRef('');
 
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
-    const auth = sessionStorage.getItem('auth');
-    if (auth) {
-      setIsAuthenticated(true);
-    }
-  }, [isAuthenticated]);
+    // If user is not logged in then, auth store model is null
+    setCurrentUser(pb.authStore.model);
+  }, [currentUser]);
+
+  pb.authStore.onChange(auth => {
+    console.log('authStore changed', auth);
+    setCurrentUser(pb.authStore.model);
+  });
 
   return (
-    <AuthContext.Provider value={{ username, password, isAuthenticated }}>
+    <AuthContext.Provider value={{ username, password, currentUser }}>
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />

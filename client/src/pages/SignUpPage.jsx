@@ -5,7 +5,7 @@ import Default from '../layouts/Default';
 function SignUpPage() {
   return (
     <Default>
-      <Form buttonText="Sign Up" />
+      <Form buttonText="Sign Up" showSignUpMessage={false} />
     </Default>
   );
 }
