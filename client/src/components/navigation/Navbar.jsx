@@ -9,9 +9,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { useContext } from 'react';
-import { CurrentUserContext } from '../pages/Pages';
+import { CurrentUserContext } from '../../pages/Pages';
 import { useNavigate } from 'react-router-dom';
-import pb from '../lib/pocketbase';
+import pb from '../../lib/pocketbase';
 
 function Navbar() {
   const { currentUser } = useContext(CurrentUserContext);

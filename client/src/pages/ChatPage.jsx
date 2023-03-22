@@ -1,7 +1,7 @@
 import { Button, Container } from '@chakra-ui/react';
 import React from 'react';
-import MessagesContainer from '../components/MessagesContainer';
-import Navbar from '../components/Navbar';
+import MessagesBox from '../components/MessagesBox';
+import Navbar from '../components/navigation/Navbar';
 import TextBox from '../components/TextBox';
 import Default from '../layouts/Default';
 
@@ -14,7 +14,7 @@ function ChatPage() {
       <Navbar />
       <Default>
         <Container as="section" maxWidth="4xl">
-          <MessagesContainer />
+          <MessagesBox />
           <TextBox />
           <Button bg="#EF7C8E" color="white" onClick={handleSend}>
             Send

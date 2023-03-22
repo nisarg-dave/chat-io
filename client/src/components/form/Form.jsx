@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import FormField from './FormField';
 import { Box, Button, Heading, Link, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import pb from '../lib/pocketbase';
+import pb from '../../lib/pocketbase';
 
 function Form({ buttonText, showSignUpMessage }) {
   const navigate = useNavigate();
