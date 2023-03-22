@@ -1,4 +1,4 @@
-import React, { useEffect, useState, createContext } from 'react';
+import React, { useState, createContext } from 'react';
 import SignUpPage from './SignUpPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatPage from './ChatPage';
@@ -9,13 +9,10 @@ export const CurrentUserContext = createContext();
 
 function Pages() {
   const [currentUser, setCurrentUser] = useState(null);
-  useEffect(() => {
-    // If user is not logged in then, auth store model is null
-    setCurrentUser(pb.authStore.model);
-  }, [currentUser]);
 
   pb.authStore.onChange(auth => {
     console.log('authStore changed', auth);
+    // If user is not logged in then, auth store model is null
     setCurrentUser(pb.authStore.model);
   });
 

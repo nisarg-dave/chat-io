@@ -1,4 +1,12 @@
-import { Button, Flex, Heading, HStack, Spacer, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Button,
+  Flex,
+  Heading,
+  HStack,
+  Spacer,
+  Text,
+} from '@chakra-ui/react';
 import React from 'react';
 import { useContext } from 'react';
 import { CurrentUserContext } from '../pages/Pages';
@@ -18,6 +26,7 @@ function Navbar() {
       <Heading>Chat IO</Heading>
       <Spacer />
       <HStack spacing="20px">
+        <Avatar name={currentUser.username} src={currentUser.avatar} />
         <Text>{currentUser.username}</Text>
         <Button bg="#EF7C8E" color="white" onClick={handleLogout}>
           Logout
