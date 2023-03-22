@@ -1,20 +1,35 @@
-import React, { useContext } from 'react';
+import React, { useRef } from 'react';
 import FormField from './FormField';
 import { Box, Button, Heading, Link, Text } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../pages/Pages';
 import pb from '../lib/pocketbase';
 
 function Form({ buttonText, showSignUpMessage }) {
   const navigate = useNavigate();
 
-  const { username, password } = useContext(AuthContext);
+  const username = useRef('');
+  const password = useRef('');
 
   const login = async () => {
-    await pb
-      .collection('users')
-      .authWithPassword(username.current, password.current);
-    navigate('/chat');
+    try {
+      await pb
+        .collection('users')
+        .authWithPassword(username.current, password.current);
+      navigate('/chat');
+    } catch (e) {
+      const errorMessageObject = e.data.data;
+      if (errorMessageObject.identity && errorMessageObject.password) {
+        alert(
+          `Username: ${errorMessageObject.identity.message} \nPassword: ${errorMessageObject.password.message}`
+        );
+      }
+      if (errorMessageObject.identity && !errorMessageObject.password) {
+        alert(`Username: ${errorMessageObject.identity.message}`);
+      }
+      if (!errorMessageObject.identity && errorMessageObject.password) {
+        alert(`Password: ${errorMessageObject.password.message}`);
+      }
+    }
   };
 
   const handleSubmit = async e => {
@@ -29,12 +44,22 @@ function Form({ buttonText, showSignUpMessage }) {
           username: username.current,
           password: password.current,
           passwordConfirm: password.current,
-          avatar: `https://api.dicebear.com/5.x/bottts/svg?seed=${username.current}`,
+          avatar: `https://api.multiavatar.com/${username.current}.svg`,
         });
         await login();
       } catch (e) {
-        console.log(e.data);
-        alert(Object.values(e.data));
+        const errorMessageObject = e.data.data;
+        if (username.current === '' && errorMessageObject.password) {
+          alert(
+            `Username: Cannot be blank.\nPassword: ${errorMessageObject.password.message}`
+          );
+        }
+        if (username.current === '' && !errorMessageObject.password) {
+          alert('Username: Cannot be blank.');
+        }
+        if (username.current !== '' && errorMessageObject.password) {
+          alert(`Password: ${errorMessageObject.password.message}`);
+        }
       }
     }
   };

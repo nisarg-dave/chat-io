@@ -1,16 +1,13 @@
-import React, { useEffect, useState, useRef, createContext } from 'react';
+import React, { useEffect, useState, createContext } from 'react';
 import SignUpPage from './SignUpPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
 import pb from '../lib/pocketbase';
 
-export const AuthContext = createContext();
+export const CurrentUserContext = createContext();
 
 function Pages() {
-  const username = useRef('');
-  const password = useRef('');
-
   const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     // If user is not logged in then, auth store model is null
@@ -23,7 +20,7 @@ function Pages() {
   });
 
   return (
-    <AuthContext.Provider value={{ username, password, currentUser }}>
+    <CurrentUserContext.Provider value={{ currentUser }}>
       <Router>
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -31,7 +28,7 @@ function Pages() {
           <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </Router>
-    </AuthContext.Provider>
+    </CurrentUserContext.Provider>
   );
 }
 

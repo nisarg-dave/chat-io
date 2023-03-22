@@ -1,12 +1,12 @@
 import { Button, Flex, Heading, HStack, Spacer, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useContext } from 'react';
-import { AuthContext } from '../pages/Pages';
+import { CurrentUserContext } from '../pages/Pages';
 import { useNavigate } from 'react-router-dom';
 import pb from '../lib/pocketbase';
 
 function Navbar() {
-  const { username } = useContext(AuthContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -18,7 +18,7 @@ function Navbar() {
       <Heading>Chat IO</Heading>
       <Spacer />
       <HStack spacing="20px">
-        <Text>{username.current}</Text>
+        <Text>{currentUser.username}</Text>
         <Button bg="#EF7C8E" color="white" onClick={handleLogout}>
           Logout
         </Button>
