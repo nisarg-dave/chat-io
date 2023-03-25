@@ -22,15 +22,27 @@ function Form({ buttonText, showSignUpMessage }) {
         alert(
           `Username: ${errorMessageObject.identity.message} \nPassword: ${errorMessageObject.password.message}`
         );
+        setTimeout(() => {
+          window.location.reload();
+        }, 1);
       }
       if (errorMessageObject.identity && !errorMessageObject.password) {
         alert(`Username: ${errorMessageObject.identity.message}`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1);
       }
       if (!errorMessageObject.identity && errorMessageObject.password) {
         alert(`Password: ${errorMessageObject.password.message}`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1);
       }
       if (!errorMessageObject.identity && !errorMessageObject.password) {
         alert(`${e.data.message}`);
+        setTimeout(() => {
+          window.location.reload();
+        }, 1);
       }
     }
   };
@@ -56,12 +68,21 @@ function Form({ buttonText, showSignUpMessage }) {
           alert(
             `Username: Cannot be blank.\nPassword: ${errorMessageObject.password.message}`
           );
+          setTimeout(() => {
+            window.location.reload();
+          }, 1);
         }
         if (username.current === '' && !errorMessageObject.password) {
           alert('Username: Cannot be blank.');
+          setTimeout(() => {
+            window.location.reload();
+          }, 1);
         }
         if (username.current !== '' && errorMessageObject.password) {
           alert(`Password: ${errorMessageObject.password.message}`);
+          setTimeout(() => {
+            window.location.reload();
+          }, 1);
         }
       }
     }

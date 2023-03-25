@@ -1,6 +1,11 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext } from 'react';
 import SignUpPage from './SignUpPage';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
 import ChatPage from './ChatPage';
 import LoginPage from './LoginPage';
 import pb from '../lib/pocketbase';
@@ -17,19 +22,29 @@ function Pages() {
 
   return (
     <Router>
-      {!currentUser ? (
-        <LoginPage />
-      ) : (
-        <CurrentUserContext.Provider value={{ currentUser }}>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/chat" element={<ChatPage />} />
-          </Routes>
-        </CurrentUserContext.Provider>
-      )}
+      <CurrentUserContext.Provider value={{ currentUser }}>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route
+            path="/chat"
+            element={
+              <ProtectedRoute user={currentUser}>
+                <ChatPage />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </CurrentUserContext.Provider>
     </Router>
   );
 }
+
+const ProtectedRoute = ({ user, children }) => {
+  if (!user) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
 export default Pages;
