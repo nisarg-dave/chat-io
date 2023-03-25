@@ -17,6 +17,7 @@ function ChatPage() {
       .create({ text: newMessage, user: currentUser.id });
     setNewMessage('');
   };
+
   return (
     <>
       <Navbar />

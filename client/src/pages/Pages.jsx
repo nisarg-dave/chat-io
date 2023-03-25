@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import SignUpPage from './SignUpPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ChatPage from './ChatPage';
@@ -16,15 +16,19 @@ function Pages() {
   });
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser }}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/chat" element={<ChatPage />} />
-          <Route path="/signup" element={<SignUpPage />} />
-        </Routes>
-      </Router>
-    </CurrentUserContext.Provider>
+    <Router>
+      {!currentUser ? (
+        <LoginPage />
+      ) : (
+        <CurrentUserContext.Provider value={{ currentUser }}>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/chat" element={<ChatPage />} />
+          </Routes>
+        </CurrentUserContext.Provider>
+      )}
+    </Router>
   );
 }
 
