@@ -18,6 +18,8 @@ function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    // Need to unsubscribe from realtime because otherwise we will get memory leaks
+    pb.collection('messages').unsubscribe('*');
     pb.authStore.clear();
     navigate('/');
   };

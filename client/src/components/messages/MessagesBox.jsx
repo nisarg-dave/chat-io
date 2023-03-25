@@ -14,18 +14,29 @@ function MessagesBox() {
         // Expand option lets you join relationships
         expand: 'user',
       });
-      console.log(res.items);
       setMessages(res.items);
     };
     fetchMessages();
   }, []);
 
-  pb.collection('messages').subscribe('*', e => {
-    setMessages([...messages, e.record]);
+  pb.collection('messages').subscribe('*', async ({ action, record }) => {
+    if (action === 'create') {
+      // This record won't have the expanded user and so we need to add it
+      const user = await pb.collection('users').getOne(record.user);
+      record.expand = { user };
+      setMessages([...messages, record]);
+    }
   });
 
   return (
-    <Box borderRadius="lg" border="1px" h="550" marginBottom={5} bg="#D8A7B1">
+    <Box
+      borderRadius="lg"
+      border="1px"
+      h="550"
+      marginBottom={5}
+      bg="#D8A7B1"
+      overflowY="scroll"
+    >
       {messages.map(message => {
         return <MessageRow message={message} key={message.id} />;
       })}

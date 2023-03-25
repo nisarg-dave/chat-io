@@ -11,7 +11,6 @@ function Pages() {
   const [currentUser, setCurrentUser] = useState(null);
 
   pb.authStore.onChange(auth => {
-    console.log('authStore changed', auth);
     // If user is not logged in then, auth store model is null
     setCurrentUser(pb.authStore.model);
   });
