@@ -1,7 +1,7 @@
 import { Textarea } from '@chakra-ui/react';
 import React from 'react';
 
-function TextBox() {
+function TextBox({ onChange, value }) {
   return (
     <Textarea
       resize="horizontal"
@@ -10,6 +10,10 @@ function TextBox() {
       borderRadius="lg"
       border="1px"
       focusBorderColor="#EF7C8E"
+      type="text"
+      size="lg"
+      onChange={onChange}
+      value={value}
     />
   );
 }
