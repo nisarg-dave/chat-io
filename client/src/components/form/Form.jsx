@@ -18,7 +18,6 @@ function Form({ buttonText, showSignUpMessage }) {
       navigate('/chat');
     } catch (e) {
       const errorMessageObject = e.data.data;
-      console.log(e.data);
       if (errorMessageObject.identity && errorMessageObject.password) {
         alert(
           `Username: ${errorMessageObject.identity.message} \nPassword: ${errorMessageObject.password.message}`
