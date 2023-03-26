@@ -29,7 +29,7 @@ function Navbar() {
       <Spacer />
       <HStack spacing="20px">
         <Avatar name={currentUser.username} src={currentUser.avatar} />
-        <Text>{currentUser.username}</Text>
+        <Text pt="1">{currentUser.username}</Text>
         <Button bg="#EF7C8E" color="white" onClick={handleLogout}>
           Logout
         </Button>

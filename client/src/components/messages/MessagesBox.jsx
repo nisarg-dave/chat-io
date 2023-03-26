@@ -9,12 +9,12 @@ function MessagesBox() {
   useEffect(() => {
     const fetchMessages = async () => {
       // Get 50 messages per page starting at page 1
-      const res = await pb.collection('messages').getList(1, 50, {
+      const records = await pb.collection('messages').getFullList({
         sort: 'created',
         // Expand option lets you join relationships
         expand: 'user',
       });
-      setMessages(res.items);
+      setMessages(records);
     };
     fetchMessages();
   }, []);
