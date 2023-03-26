@@ -28,7 +28,7 @@ function ChatPage() {
             onChange={e => setNewMessage(e.target.value)}
             value={newMessage}
           />
-          <Button bg="#EF7C8E" color="white" onClick={handleSend}>
+          <Button bg="hotPink" color="white" onClick={handleSend}>
             Send
           </Button>
         </Container>

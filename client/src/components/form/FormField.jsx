@@ -8,7 +8,7 @@ const FormField = forwardRef(function FormField({ placeholder, type }, ref) {
       mb={5}
       type={type}
       ref={ref}
-      focusBorderColor="#EF7C8E"
+      focusBorderColor="hotPink"
     />
   );
 });

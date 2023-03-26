@@ -9,7 +9,7 @@ function TextBox({ onChange, value }) {
       marginBottom={2}
       borderRadius="lg"
       border="1px"
-      focusBorderColor="#EF7C8E"
+      focusBorderColor="hotPink"
       type="text"
       size="lg"
       onChange={onChange}

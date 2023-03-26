@@ -24,13 +24,13 @@ function Navbar() {
     navigate('/');
   };
   return (
-    <Flex as="nav" bg="#B6E2D3" pt="3" pb="15" px="5">
+    <Flex as="nav" bg="spearmint" pt="3" pb="15" px="5">
       <Heading>Chat IO</Heading>
       <Spacer />
       <HStack spacing="20px">
         <Avatar name={currentUser.username} src={currentUser.avatar} />
         <Text pt="1">{currentUser.username}</Text>
-        <Button bg="#EF7C8E" color="white" onClick={handleLogout}>
+        <Button bg="hotPink" color="white" onClick={handleLogout}>
           Logout
         </Button>
       </HStack>

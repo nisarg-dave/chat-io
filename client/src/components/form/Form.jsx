@@ -94,7 +94,7 @@ function Form({ buttonText, showSignUpMessage }) {
       borderRadius="lg"
       border="1px"
       padding={8}
-      bg="#B6E2D3"
+      bg="spearmint"
     >
       <Heading as="h1" size="2xl" mb={2} textAlign="center">
         Chat IO
@@ -102,7 +102,7 @@ function Form({ buttonText, showSignUpMessage }) {
       {/* <FormField placeholder="Email" /> */}
       <FormField placeholder="Username" type="text" ref={username} />
       <FormField placeholder="Password" type="password" ref={password} />
-      <Button bg="#EF7C8E" w="100%" onClick={handleSubmit} color="white">
+      <Button bg="hotPink" w="100%" onClick={handleSubmit} color="white">
         {buttonText}
       </Button>
       {showSignUpMessage ? (

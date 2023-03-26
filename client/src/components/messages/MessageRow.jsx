@@ -9,7 +9,7 @@ function MessageRow({ message }) {
     <>
       {isCurrentUser ? (
         <HStack p="5" justify="end">
-          <Box bg="#B6E2D3" borderRadius="lg" padding="2">
+          <Box bg="spearmint" borderRadius="lg" padding="2">
             <Text fontSize="sm">{message.text}</Text>
           </Box>
           <VStack>
@@ -31,7 +31,7 @@ function MessageRow({ message }) {
             />
             <Text fontSize="xs">{message.expand.user.username}</Text>
           </VStack>
-          <Box bg="#B6E2D3" borderRadius="lg" padding="2">
+          <Box bg="spearmint" borderRadius="lg" padding="2">
             <Text fontSize="sm">{message.text}</Text>
           </Box>
         </HStack>
