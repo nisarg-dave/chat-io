@@ -14,7 +14,7 @@ function Form({ buttonText, showSignUpMessage }) {
     try {
       await pb
         .collection('users')
-        .authWithPassword(username.current, password.current);
+        .authWithPassword(username.current.value, password.current.value);
       navigate('/chat');
     } catch (e) {
       const errorMessageObject = e.data.data;
@@ -22,67 +22,44 @@ function Form({ buttonText, showSignUpMessage }) {
         alert(
           `Username: ${errorMessageObject.identity.message} \nPassword: ${errorMessageObject.password.message}`
         );
-        setTimeout(() => {
-          window.location.reload();
-        }, 1);
       }
       if (errorMessageObject.identity && !errorMessageObject.password) {
         alert(`Username: ${errorMessageObject.identity.message}`);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1);
       }
       if (!errorMessageObject.identity && errorMessageObject.password) {
         alert(`Password: ${errorMessageObject.password.message}`);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1);
       }
       if (!errorMessageObject.identity && !errorMessageObject.password) {
         alert(`${e.data.message}`);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1);
       }
     }
   };
 
   const handleSubmit = async e => {
     e.preventDefault();
-    username.current = username.current.value;
-    password.current = password.current.value;
     if (buttonText === 'Log In') {
       await login();
     } else {
       try {
         await pb.collection('users').create({
-          username: username.current,
-          password: password.current,
-          passwordConfirm: password.current,
+          username: username.current.value,
+          password: password.current.value,
+          passwordConfirm: password.current.value,
           avatar: `https://api.dicebear.com/5.x/bottts/svg?seed=${username.current}`,
         });
         await login();
       } catch (e) {
         const errorMessageObject = e.data.data;
-        if (username.current === '' && errorMessageObject.password) {
+        if (username.current.value === '' && errorMessageObject.password) {
           alert(
             `Username: Cannot be blank.\nPassword: ${errorMessageObject.password.message}`
           );
-          setTimeout(() => {
-            window.location.reload();
-          }, 1);
         }
-        if (username.current === '' && !errorMessageObject.password) {
+        if (username.current.value === '' && !errorMessageObject.password) {
           alert('Username: Cannot be blank.');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1);
         }
-        if (username.current !== '' && errorMessageObject.password) {
+        if (username.current.value !== '' && errorMessageObject.password) {
           alert(`Password: ${errorMessageObject.password.message}`);
-          setTimeout(() => {
-            window.location.reload();
-          }, 1);
         }
       }
     }
