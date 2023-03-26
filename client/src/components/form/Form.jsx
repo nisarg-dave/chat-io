@@ -45,7 +45,7 @@ function Form({ buttonText, showSignUpMessage }) {
           username: username.current.value,
           password: password.current.value,
           passwordConfirm: password.current.value,
-          avatar: `https://api.dicebear.com/5.x/bottts/svg?seed=${username.current}`,
+          avatar: `https://api.dicebear.com/5.x/bottts/svg?seed=${username.current.value}`,
         });
         await login();
       } catch (e) {
