@@ -59,7 +59,7 @@ function Form({ buttonText, showSignUpMessage }) {
           username: username.current,
           password: password.current,
           passwordConfirm: password.current,
-          avatar: `https://api.multiavatar.com/${username.current}.svg`,
+          avatar: `https://api.dicebear.com/5.x/bottts/svg?seed=${username.current}`,
         });
         await login();
       } catch (e) {

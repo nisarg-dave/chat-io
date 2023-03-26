@@ -13,7 +13,9 @@ import pb from '../lib/pocketbase';
 export const CurrentUserContext = createContext();
 
 function Pages() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(window.localStorage.getItem('pocketbase_auth'))?.model
+  );
 
   pb.authStore.onChange(auth => {
     // If user is not logged in then, auth store model is null
@@ -34,13 +36,14 @@ function Pages() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<ProtectedRoute user={currentUser} />} />
         </Routes>
       </CurrentUserContext.Provider>
     </Router>
   );
 }
 
-const ProtectedRoute = ({ user, children }) => {
+const ProtectedRoute = ({ children, user }) => {
   if (!user) {
     return <Navigate to="/" replace />;
   }
