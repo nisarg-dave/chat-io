@@ -4,6 +4,6 @@ A real-time chat application. Allows users to sign-up and chat with each other i
 
 ## Tech Stack
 
-React
-Pocketbase (Pocketbase Admin is deployed here: https://chat-io.fly.dev/_/)
-Chakra UI
+- React
+- Pocketbase (Pocketbase Admin is deployed here: https://chat-io.fly.dev/_/)
+- Chakra UI
